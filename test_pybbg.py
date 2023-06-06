@@ -26,18 +26,33 @@ class TestPybbg(unittest.TestCase):
 
     def test_bdh(self):
         tester = pybbg.Pybbg()
-        data = tester.bdh(['AMZN US Equity', 'IBM US Equity'], ['PX_LAST', 'PX_BID', 'PX_ASK'], datetime.datetime.today() + datetime.timedelta(days=-10), datetime.datetime.today())
+        data = tester.bdh(
+            ['AMZN US Equity', 'IBM US Equity'],
+            ['PX_LAST', 'PX_BID', 'PX_ASK'],
+            datetime.datetime.now() + datetime.timedelta(days=-10),
+            datetime.datetime.now(),
+        )
         print(data) 
 
     def test_bdh_single_field(self):
         tester = pybbg.Pybbg()
-        data = tester.bdh(['AMZN US Equity', 'IBM US Equity'], 'PX_LAST', datetime.datetime.today() + datetime.timedelta(days=-10), datetime.datetime.today())
+        data = tester.bdh(
+            ['AMZN US Equity', 'IBM US Equity'],
+            'PX_LAST',
+            datetime.datetime.now() + datetime.timedelta(days=-10),
+            datetime.datetime.now(),
+        )
         print(data) 
 
 
     def test_bdh_single_field_single_security(self):
         tester = pybbg.Pybbg()
-        data = tester.bdh('AMZN US Equity', 'PX_LAST', datetime.datetime.today() + datetime.timedelta(days=-10), datetime.datetime.today())
+        data = tester.bdh(
+            'AMZN US Equity',
+            'PX_LAST',
+            datetime.datetime.now() + datetime.timedelta(days=-10),
+            datetime.datetime.now(),
+        )
         print(data) 
 
     def test_bdp_bad_sec(self):
@@ -47,7 +62,12 @@ class TestPybbg(unittest.TestCase):
 
     def test_bdh_bad_sec(self):
         tester = pybbg.Pybbg()
-        data = tester.bdh('260555 Equity', ['PX_LAST','PX_BID','PX_ASK'], datetime.datetime.today() + datetime.timedelta(days=-10), datetime.datetime.today())
+        data = tester.bdh(
+            '260555 Equity',
+            ['PX_LAST', 'PX_BID', 'PX_ASK'],
+            datetime.datetime.now() + datetime.timedelta(days=-10),
+            datetime.datetime.now(),
+        )
         print(data)
 
     def test_bdh_mixed_dates_monthly(self):

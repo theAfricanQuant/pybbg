@@ -213,9 +213,9 @@ class Pybbg():
                 override1.setElement('value', overrides[k])
 
         self.session.sendRequest(request)
-        data = dict()
+        data = {}
 
-        while (True):
+        while True:
             # We provide timeout to give the chance for Ctrl+C handling:
             ev = self.session.nextEvent(500)
             for msg in ev:
@@ -224,7 +224,7 @@ class Pybbg():
                 for i in range(securityData.numValues()):
                     fieldData = securityData.getValue(i).getElement("fieldData")
                     secId = securityData.getValue(i).getElement("security").getValue()
-                    data[secId] = dict()
+                    data[secId] = {}
                     for field in fld_list:
                         if fieldData.hasElement(field):
                             data[secId][field] = fieldData.getElement(field).getValue()
@@ -308,9 +308,9 @@ class Pybbg():
 
         # print(request)
         self.session.sendRequest(request)
-        data = dict()
+        data = {}
 
-        while (True):
+        while True:
             # We provide timeout to give the chance for Ctrl+C handling:
             ev = self.session.nextEvent(500)
             for msg in ev:
@@ -318,13 +318,13 @@ class Pybbg():
                 securityData = msg.getElement("securityData")
                 for i in range(securityData.numValues()):
                     fieldData = securityData.getValue(i).getElement("fieldData").getElement(field)
-                    for i, row in enumerate(fieldData.values()):
+                    for row in fieldData.values():
                         for j in range(row.numElements()):
                             e = row.getElement(j)
                             k = str(e.name())
                             v = e.getValue()
                             if k not in data:
-                                data[k] = list()
+                                data[k] = []
 
                             data[k].append(v)
 
